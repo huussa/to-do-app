@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin: "http://localhost:3000", // make the domain of frontend is the original path
+  origin: "http://localhost:3001", // make the domain of frontend is the original path
   credentials: true // allows the cockies
 })); // fixing paths in server requests
 
