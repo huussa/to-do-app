@@ -14,7 +14,7 @@
   text-align: center;
   margin-top: 0;
   margin-bottom: 30px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .loginCard form {
@@ -42,13 +42,12 @@
 .loginCard form input[type="password"]::-ms-clear {
   display: none;
 }
-/* تنسيق زر الإظهار والإخفاء المخصص */
 .togglePasswordBtn {
   position: absolute;
-  right: 15px; /* نضعه في الجهة اليمنى من الحقل */
+  right: 15px; 
   top: 50%;
   transform: translateY(-50%);
-  background: none !important; /* نتجاوز خلفية زر الـ submit */
+  background: none !important; 
   border: none !important;
   color: #6b7280 !important;
   font-size: 16px !important;
@@ -58,9 +57,6 @@
   width: auto !important;
 }
 
-.togglePasswordBtn:hover {
-  color: #3b82f6 !important; 
-}
 .loginCard form input {
   width: 100%;
   padding: 15px;
@@ -80,7 +76,7 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.loginCard form button {
+.loginCard form .submitBtn {
   width: 100%;
   padding: 14px 16px;
   font-size: 25px;
@@ -93,10 +89,10 @@
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.loginCard form button:hover {
+.loginCard form .submitBtn:hover {
   background-color: #2563eb; 
 }
 
-.loginCard form button:active {
+.loginCard form .submitBtn:active {
   transform: scale(0.98);
 }

@@ -8,6 +8,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  let isShow = false;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,22 +56,14 @@ function LoginPage() {
             onClick={() => setShowPassword(!showPassword)}
           >
             <img
-              src="/hide.png"
+              src={`${showPassword ? "/hide.svg" : "/show.svg"}`}
+              alt={`${showPassword ? "Hide" : "Show"}`}
               width={25}
               height={25}
-              style={{ display: showPassword ? "block" : "none" }}
-              alt="Hide"
-            />
-            <img
-              src="/show.png"
-              width={25}
-              height={25}
-              style={{ display: !showPassword ? "block" : "none" }}
-              alt="Show"
             />
           </button>
         </div>
-        <button type="submit">Login</button>
+        <button className={styles.submitBtn} type="submit">Login</button>
       </form>
     </div>
   );
