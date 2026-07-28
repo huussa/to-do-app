@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import api from "../lib/axios";
 
 function RegisterPage() {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,7 +26,7 @@ function RegisterPage() {
 
     try {
       const response = await api.post("/register", {
-        username,
+        name,
         email,
         password,
       });
@@ -72,8 +72,8 @@ function RegisterPage() {
           <input
             type="text"
             placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
