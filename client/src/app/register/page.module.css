@@ -1,0 +1,110 @@
+.registerCard {
+  width: 100%;
+  max-width: 25vw;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* ظل خفيف وجميل */
+}
+
+.registerCard h1 {
+  font-size: 40px;
+  color: #1f2937;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.registerCard form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: auto;
+  opacity: 0.6;
+}
+.registerCard form input[type="password"]::-ms-reveal,
+.registerCard form input[type="password"]::-ms-clear {
+  display: none;
+}
+.togglePasswordBtn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-45%);
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: auto !important;
+}
+
+.registerCard form input {
+  width: 100%;
+  padding: 15px;
+  padding-left: 50px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  color: #1f2937;
+  font-size: 24px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+}
+
+.registerCard form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.registerCard form .submitBtn {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.registerCard form .submitBtn:hover {
+  background-color: #2563eb;
+}
+
+.registerCard form .submitBtn:active {
+  transform: scale(0.98);
+}
+
+.registerCard .createWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 20px;
+}
+.registerCard .createWrapper a {
+  color: #2563eb;
+}
+.registerCard .createWrapper a:hover {
+  color: darkorchid;
+}
+
