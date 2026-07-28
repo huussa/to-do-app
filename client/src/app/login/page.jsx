@@ -2,6 +2,7 @@
 
 import styles from "./page.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import api from "../lib/axios";
 
 function LoginPage() {
@@ -9,8 +10,23 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const router = useRouter();
+
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
+    try {
+      const response = await api.post("/login", {email, password})
+
+      localStorage.setItem("token", response.data.token);
+      router.push("/tasks");
+
+    } catch (error){
+      setError(error.response?.data?.message || "Wrong Email or Password")
+    }
 
     console.log(email, password);
   };
@@ -19,6 +35,7 @@ function LoginPage() {
     <div className={styles.loginCard}>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className={styles.inputWrapper}>
           <img
             src="/email.png"
@@ -67,7 +84,7 @@ function LoginPage() {
         </button>
       </form>
       <div className={styles.createWrapper}>
-        <p>don't have an account? <a href="#">Create</a></p>
+        <p>don't have an account? <a onClick={() => router.push("/register")}>Create</a></p>
         <a href="#">forgot Password?</a>
       </div>
     </div>

@@ -2,24 +2,64 @@
 
 import styles from "./page.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import api from "../lib/axios";
 
 function RegisterPage() {
-  const [username, setUsername] = useState("")
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    console.log(email, password);
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await api.post("/register", {
+        username,
+        email,
+        password,
+      });
+
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      router.push("/tasks");
+    } catch (error) {
+      const errorMessage = error.response?.data?.message;
+
+      if (errorMessage === "user is already exists!") {
+        try {
+          const loginResponse = await api.post("/login", { email, password });
+
+          const token = loginResponse.data.token;
+          localStorage.setItem("token", token);
+
+          router.push("/tasks");
+        } catch (loginErr) {
+          setError(
+            loginError.response?.data?.message || "Wrong Email or Password",
+          );
+        }
+      } else {
+        setError(errorMessage || "Registration failed. Try again.");
+      }
+    }
   };
 
   return (
     <div className={styles.registerCard}>
       <h1>Sign up</h1>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         {/* Username */}
         <div className={styles.inputWrapper}>
@@ -110,12 +150,12 @@ function RegisterPage() {
           </button>
         </div>
         <button className={styles.submitBtn} type="submit">
-          Login
+          Sign up
         </button>
       </form>
       <div className={styles.createWrapper}>
         <p>
-          have an account? <a href="#">Login</a>
+          have an account? <a onClick={() => router.push("/login")}>Login</a>
         </p>
       </div>
     </div>
