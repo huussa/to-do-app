@@ -1,14 +1,13 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../lib/axios";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  let isShow = false;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,8 +62,14 @@ function LoginPage() {
             />
           </button>
         </div>
-        <button className={styles.submitBtn} type="submit">Login</button>
+        <button className={styles.submitBtn} type="submit">
+          Login
+        </button>
       </form>
+      <div className={styles.createWrapper}>
+        <p>don't have an account? <a href="#">Create</a></p>
+        <a href="#">forgot Password?</a>
+      </div>
     </div>
   );
 }
