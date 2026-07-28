@@ -1,0 +1,3 @@
+module.exports=[24361,(a,b,c)=>{b.exports=a.x("util",()=>require("util"))},14747,(a,b,c)=>{b.exports=a.x("path",()=>require("path"))},40618,a=>{a.v({app:"page-module__aydn6q__app"})},95347,a=>{"use strict";var b=a.i(87924),c=a.i(40618);a.i(72131),a.i(40600),a.s(["default",0,function(){return(0,b.jsx)("div",{className:c.default.page})}])}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__1la-_u4._.js.map

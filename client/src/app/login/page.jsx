@@ -1,68 +1,79 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import styles from "./page.module.css";
+import { useState, useEffect } from "react";
 import api from "../lib/axios";
 
-export default function LoginPage() {
+function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
 
-    try {
-      const response = await api.post("/login", { email, password });
-      console.log("تم تسجيل الدخول:", response.data);
-      router.push("/tasks"); 
-    } catch (err) {
-      setError(err.response?.data?.message || "حدث خطأ أثناء تسجيل الدخول");
-    }
+    console.log(email, password);
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          تسجيل الدخول
-        </h2>
-        
-        {error && (
-          <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-center text-sm">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleLogin} className="flex flex-col gap-4">
+    <div className={styles.loginCard}>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.inputWrapper}>
+          <img
+            src="/email.png"
+            width={25}
+            height={25}
+            className={styles.inputIcon}
+          />
           <input
             type="email"
-            placeholder="البريد الإلكتروني"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 p-3 rounded focus:outline-none focus:border-blue-500 text-gray-900"
             required
           />
+        </div>
 
+        <div className={styles.inputWrapper}>
+          <img
+            src="/password.png"
+            width={25}
+            height={25}
+            className={styles.inputIcon}
+          />
           <input
-            type="password"
-            placeholder="كلمة المرور"
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border border-gray-300 p-3 rounded focus:outline-none focus:border-blue-500 text-gray-900"
             required
           />
-
           <button
-            type="submit"
-            className="bg-blue-600 text-white p-3 rounded font-bold hover:bg-blue-700 transition"
+            type="button"
+            className={styles.togglePasswordBtn}
+            onClick={() => setShowPassword(!showPassword)}
           >
-            دخول
+            <img
+              src="/hide.png"
+              width={25}
+              height={25}
+              style={{ display: showPassword ? "block" : "none" }}
+              alt="Hide"
+            />
+            <img
+              src="/show.png"
+              width={25}
+              height={25}
+              style={{ display: !showPassword ? "block" : "none" }}
+              alt="Show"
+            />
           </button>
-        </form>
-      </div>
+        </div>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
+
+export default LoginPage;
