@@ -1,3 +1,170 @@
+/* حاوية التطبيق بالكامل (الأب) */
 .tasksWrapper {
-    color: aliceblue;
+  max-width: 600px;
+  margin: 50px auto; /* توسيط الشاشة مع ترك مسافة من الأعلى */
+  padding: 30px;
+  background-color: #f8f9fa; /* لون رمادي فاتح جداً مريح للعين */
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* ظل ناعم */
+  font-family: system-ui, -apple-system, sans-serif;
 }
+
+/* العنوان الرئيسي */
+.title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* تصميم رسالة الخطأ لتكون واضحة وأنيقة */
+.errorMessage {
+  color: #dc3545;
+  background-color: #f8d7da;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+  border: 1px solid #f5c6cb;
+}
+
+/* حاوية نموذج إضافة المهمة */
+.addForm {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 2px dashed #e9ecef; /* خط فاصل جميل بين المهام والإضافة */
+}
+
+/* حقل كتابة المهمة الجديدة */
+.addInput {
+  flex: 1; /* يأخذ باقي المساحة المتوفرة */
+  padding: 14px 18px;
+  font-size: 1.05rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* تأثير عند الضغط على حقل الإدخال */
+.addInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+/* زر إضافة المهمة */
+.addBtn {
+  padding: 0 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.addBtn:hover {
+  background-color: #0056b3;
+}
+
+.addBtn:active {
+  transform: scale(0.95);
+}
+
+/* تنسيق القائمة بالكامل */
+.taskList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* تنسيق كرت المهمة الواحد */
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+.taskItem:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* تنسيق نص المهمة */
+.taskTitle {
+  flex: 1; /* يجعل النص يأخذ كل المساحة المتاحة ويدفع الأزرار لليمين */
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+  margin-right: 15px;
+  word-break: break-word;
+}
+
+.completedTask {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* تنسيق مربع إدخال التعديل */
+.editInput {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  outline: none;
+  margin-right: 15px;
+}
+
+/* مجموعة الأزرار */
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+}
+
+/* الأساس المشترك لكل الأزرار */
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  color: white;
+}
+
+.btn:active {
+  transform: scale(0.95); /* تأثير ضغطة الزر */
+}
+
+/* ألوان الأزرار المخصصة */
+.btnComplete { background-color: #28a745; }
+.btnComplete:hover { background-color: #218838; }
+
+.btnUndo { background-color: #6c757d; }
+.btnUndo:hover { background-color: #5a6268; }
+
+.btnEdit { background-color: #007bff; }
+.btnEdit:hover { background-color: #0069d9; }
+
+.btnDelete { background-color: #dc3545; }
+.btnDelete:hover { background-color: #c82333; }
