@@ -26,7 +26,7 @@ export const getTasks = async (req, res) => {
     const user_id = req.user.id;
 
     const tasks = await pool.query(
-      "SELECT * FROM tasks WHERE user_id = $1 ORDER BY created_at DESC",
+      "SELECT * FROM tasks WHERE user_id = $1 ORDER BY created_at",
       [user_id],
     );
 
@@ -52,7 +52,7 @@ export const updateTask = async (req, res) => {
     if (updatedTask.rows.length <= 0) {
       return res.status(404).json({ message: "Task is not Exists" });
     }
-    res.status(200).json({ message: "Task has been Updated Successfully :)" });
+    res.status(200).json({ message: "Task has been Updated Successfully :)", task: updatedTask.rows[0] });
   } catch (error) {
     console.error("Get Tasks Error:", error);
     res.status(500).json({ message: "Error in Server" });
@@ -71,7 +71,7 @@ export const deleteTask = async (req, res) => {
     if (deletedTask.rows.length <= 0) {
       return res.status(404).json({ message: "Task is not Exists" });
     }
-    res.status(200).json({ message: "Task has been Deleted Successfully :)" });
+    res.status(200).json({ message: "Task has been Deleted Successfully :)", task: deletedTask.rows[0]});
   } catch (error) {
     console.error("Get Tasks Error:", error);
     res.status(500).json({ message: "Error in Server" });
