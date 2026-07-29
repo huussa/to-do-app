@@ -2,7 +2,7 @@ import pool from "../config/db.js";
 
 export const createTask = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title } = req.body;
     const user_id = req.user.id;
 
     if (!title) {
@@ -10,8 +10,8 @@ export const createTask = async (req, res) => {
     }
 
     const newTask = await pool.query(
-      "INSERT INTO tasks (user_id, title, description) VALUES ($1, $2, $3) RETURNING *",
-      [user_id, title, description],
+      "INSERT INTO tasks (user_id, title) VALUES ($1, $2) RETURNING *",
+      [user_id, title],
     );
 
     res.status(201).json({ message: "Task Added", task: newTask.rows[0] });
@@ -40,13 +40,13 @@ export const getTasks = async (req, res) => {
 export const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, is_completed } = req.body;
+    const { title, is_completed } = req.body;
     const user_id = req.user.id;
 
     // update task
     const updatedTask = await pool.query(
-      "UPDATE tasks SET title = $1, description = $2, is_completed = $3 WHERE id = $4 AND user_id = $5 RETURNING *",
-      [title, description, is_completed, id, user_id],
+      "UPDATE tasks SET title = $1, is_completed = $2 WHERE id = $3 AND user_id = $4 RETURNING *",
+      [title, is_completed, id, user_id],
     );
 
     if (updatedTask.rows.length <= 0) {
