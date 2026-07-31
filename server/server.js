@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import tasksRoutes from "./routes/tasksRoutes.js";
+import verifyRoutes from "./routes/verifyRoutes.js"
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cors({
 
 app.use("/api", authRoutes); // connect auth routes
 app.use("/api/tasks", tasksRoutes); // connect tasks routes
+app.use("/api", verifyRoutes)
 
 app.get("/", (req, res) => {
   res.send("Home");
